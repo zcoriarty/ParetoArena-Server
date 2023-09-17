@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  paretoarena:
+    depends_on:
+      - database
+    build: .
+    entrypoint: ["sh", "-c", "./initdb.sh"]
+    ports:
+      - "8080:8080"
+
+  database:
+    image: "postgres:14.0"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
